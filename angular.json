@@ -25,7 +25,12 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.less"
@@ -119,6 +124,120 @@
           }
         }
       }
-    }},
+    },
+    "hero-house": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/hero-house",
+      "sourceRoot": "projects/hero-house/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hero-house",
+            "index": "projects/hero-house/src/index.html",
+            "main": "projects/hero-house/src/main.ts",
+            "polyfills": "projects/hero-house/src/polyfills.ts",
+            "tsConfig": "projects/hero-house/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/hero-house/src/favicon.ico",
+              "projects/hero-house/src/assets"
+            ],
+            "styles": [
+              "projects/hero-house/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/hero-house/src/environments/environment.ts",
+                  "with": "projects/hero-house/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hero-house:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hero-house:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hero-house:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/hero-house/src/test.ts",
+            "polyfills": "projects/hero-house/src/polyfills.ts",
+            "tsConfig": "projects/hero-house/tsconfig.spec.json",
+            "karmaConfig": "projects/hero-house/karma.conf.js",
+            "assets": [
+              "projects/hero-house/src/favicon.ico",
+              "projects/hero-house/src/assets"
+            ],
+            "styles": [
+              "projects/hero-house/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/hero-house/tsconfig.app.json",
+              "projects/hero-house/tsconfig.spec.json",
+              "projects/hero-house/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/hero-house/e2e/protractor.conf.js",
+            "devServerTarget": "hero-house:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hero-house:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "angular-demo"
 }

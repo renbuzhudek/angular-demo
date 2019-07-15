@@ -1,0 +1,56 @@
+<p >hero-house works!</p>
+<h2>{{title}}</h2>
+<button (click)="onclick($event)">点我一下</button>
+<textarea name="text1" id="" cols="30" rows="10" (input)="onInput($event)" ></textarea>
+
+ <button nz-button nzType="primary">Primary</button>
+ <form nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email">E-mail</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input name="email" type="email" id="email">
+      </nz-form-control>
+    </nz-form-item >
+  </form>
+  <input type="text" nz-input  placeholder="input with clear icon" />
+<div *ngIf="true">ngIf</div>
+<p>email:{{email}}</p>
+
+<div *ngFor="let item of heros" (click)="onSelect(item)" class="hero-active" [class.selected]="item === selectedHero">
+  <label for="" style="padding-right:5px;">hero name：<span>{{item.name}}</span> </label>  
+  <label for="">hero id: <span>{{item.id}}</span></label> 
+</div>
+
+<div>
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
+
+<h3>Shipping Prices</h3>
+<input type="text" [(ngModel)]="text">
+<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
+  <span>{{ shipping.type }}</span>
+  <span>{{ shipping.price | currency }}</span>
+</div>
+
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+ 
+  <div>
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+ 
+  <div>
+    <label>Address</label>
+    <input type="text" formControlName="address">
+  </div>
+  <button class="button" type="submit">Purchase</button>
+
+</form>
