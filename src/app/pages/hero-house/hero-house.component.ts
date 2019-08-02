@@ -16,6 +16,7 @@ interface Item {
   styleUrls: ['./hero-house.component.less']
 })
 export class HeroHouseComponent implements OnInit, AfterContentInit {
+  name = '名字';
   title = 'Tour of Heroes';
    items: Item[] = []; // 商品
    shippingCosts;
